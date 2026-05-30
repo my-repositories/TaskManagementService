@@ -27,12 +27,12 @@ public class TaskUpdatedEventHandlerTests
     [Fact]
     public async Task HandleAsync_ShouldLogInformationMessage_WhenTaskProvided()
     {
-        var task = new TaskItem 
-        { 
-            Id = 30, 
-            UserId = "1", 
-            Title = "Updated Handler Task", 
-            Status = TaskStatus.InProgress 
+        var task = new TaskItem
+        {
+            Id = 30,
+            UserId = "1",
+            Title = "Updated Handler Task",
+            Status = TaskStatus.InProgress
         };
 
         await _handler.HandleAsync(task, CancellationToken.None);

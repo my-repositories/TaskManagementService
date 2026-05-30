@@ -16,7 +16,7 @@ public class TaskEventService
     IOptions<RabbitMqOptions> rabbitOptions
 ) : ITaskEventService
 {
-    private readonly string _httpBaseUrl = configuration["ExternalServices:HttpListenerUrl"] 
+    private readonly string _httpBaseUrl = configuration["ExternalServices:HttpListenerUrl"]
         ?? throw new ArgumentNullException(null, nameof(_httpBaseUrl));
 
     private readonly RabbitMqOptions _rabbitConfig = rabbitOptions.Value;
@@ -39,7 +39,7 @@ public class TaskEventService
         {
             var httpUrl = $"{_httpBaseUrl}?action={action}";
             var content = new StringContent(payload, Encoding.UTF8, "application/json");
-            
+
             var response = await httpClient.PostAsync(httpUrl, content);
             response.EnsureSuccessStatusCode();
         }
@@ -53,8 +53,8 @@ public class TaskEventService
     {
         try
         {
-            var factory = new ConnectionFactory 
-            { 
+            var factory = new ConnectionFactory
+            {
                 HostName = _rabbitConfig.Host,
                 UserName = _rabbitConfig.UserName,
                 Password = _rabbitConfig.Password
@@ -64,10 +64,10 @@ public class TaskEventService
             using var channel = await connection.CreateChannelAsync();
 
             await channel.QueueDeclareAsync(
-                queue: _rabbitConfig.QueueName, 
-                durable: true, 
-                exclusive: false, 
-                autoDelete: false, 
+                queue: _rabbitConfig.QueueName,
+                durable: true,
+                exclusive: false,
+                autoDelete: false,
                 arguments: null);
 
             var eventMessage = new { Action = action, Data = task };
@@ -75,8 +75,8 @@ public class TaskEventService
             var body = Encoding.UTF8.GetBytes(messageBody);
 
             await channel.BasicPublishAsync(
-                exchange: string.Empty, 
-                routingKey: _rabbitConfig.QueueName, 
+                exchange: string.Empty,
+                routingKey: _rabbitConfig.QueueName,
                 body: body);
         }
         catch (Exception ex)

@@ -79,7 +79,7 @@ public class RabbitMqConsumerServiceTests
         var targetHandler = resolvedHandlers.FirstOrDefault(h => h.ActionName.Equals("UnknownAction", StringComparison.OrdinalIgnoreCase));
 
         targetHandler.Should().BeNull();
-        
+
         _loggerMock.LogWarning("[RabbitMqConsumerService] Не найден обработчик для события: UnknownAction");
 
         _loggerMock.ReceivedWithAnyArgs().Log(

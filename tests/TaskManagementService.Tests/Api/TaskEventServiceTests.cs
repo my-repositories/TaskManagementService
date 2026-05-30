@@ -52,7 +52,7 @@ public class TaskEventServiceTests
         _httpHandler.LastRequest.Should().NotBeNull();
         _httpHandler.LastRequest!.Method.Should().Be(HttpMethod.Post);
         _httpHandler.LastRequest.RequestUri!.ToString().Should().Contain("action=Created");
-        
+
         var content = await _httpHandler.LastRequest.Content!.ReadAsStringAsync();
         content.Should().Contain("Http Test");
     }

@@ -12,9 +12,9 @@ public class TaskEventsController(ILogger<TaskEventsController> logger) : Contro
     public IActionResult HandleEvent([FromQuery] string action, [FromBody] TaskItem task)
     {
         var payload = JsonSerializer.Serialize(task);
-        
+
         logger.LogInformation("Получено событие [{Action}]: {Payload}", action.ToUpper(), payload);
-        
+
         return Ok();
     }
 }

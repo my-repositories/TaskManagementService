@@ -27,12 +27,12 @@ public class TaskDeletedEventHandlerTests
     [Fact]
     public async Task HandleAsync_ShouldLogInformationMessage_WhenTaskProvided()
     {
-        var task = new TaskItem 
-        { 
-            Id = 20, 
-            UserId = "1", 
-            Title = "Deleted Handler Task", 
-            Status = TaskStatus.Completed 
+        var task = new TaskItem
+        {
+            Id = 20,
+            UserId = "1",
+            Title = "Deleted Handler Task",
+            Status = TaskStatus.Completed
         };
 
         await _handler.HandleAsync(task, CancellationToken.None);

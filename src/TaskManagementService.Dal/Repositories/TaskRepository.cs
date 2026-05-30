@@ -17,7 +17,7 @@ public class TaskRepository(AppDbContext context) : ITaskRepository
     {
         context.Tasks.Add(task);
         EnqueueOutbox("Created", task);
-        
+
         await context.SaveChangesAsync();
     }
 

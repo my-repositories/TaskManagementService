@@ -18,7 +18,7 @@ public class RabbitMqConsumerService : BackgroundService
     private IChannel? _channel;
 
     public RabbitMqConsumerService(
-        ILogger<RabbitMqConsumerService> logger, 
+        ILogger<RabbitMqConsumerService> logger,
         IOptions<RabbitMqOptions> options,
         IServiceScopeFactory scopeFactory)
     {
@@ -31,8 +31,8 @@ public class RabbitMqConsumerService : BackgroundService
     {
         stoppingToken.ThrowIfCancellationRequested();
 
-        var factory = new ConnectionFactory 
-        { 
+        var factory = new ConnectionFactory
+        {
             HostName = _rabbitConfig.Host,
             UserName = _rabbitConfig.UserName,
             Password = _rabbitConfig.Password
@@ -40,12 +40,12 @@ public class RabbitMqConsumerService : BackgroundService
 
         _connection = await factory.CreateConnectionAsync(stoppingToken);
         _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
-        
+
         await _channel.QueueDeclareAsync(
-            queue: _rabbitConfig.QueueName, 
-            durable: true, 
-            exclusive: false, 
-            autoDelete: false, 
+            queue: _rabbitConfig.QueueName,
+            durable: true,
+            exclusive: false,
+            autoDelete: false,
             arguments: null,
             cancellationToken: stoppingToken);
 
@@ -54,12 +54,12 @@ public class RabbitMqConsumerService : BackgroundService
         {
             var body = ea.Body.ToArray();
             var jsonString = Encoding.UTF8.GetString(body);
-            
+
             try
             {
-                var message = JsonSerializer.Deserialize<TaskEventMessage>(jsonString, new JsonSerializerOptions 
-                { 
-                    PropertyNameCaseInsensitive = true 
+                var message = JsonSerializer.Deserialize<TaskEventMessage>(jsonString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
                 });
 
                 if (message?.Data != null && !string.IsNullOrEmpty(message.Action))
@@ -89,8 +89,8 @@ public class RabbitMqConsumerService : BackgroundService
         };
 
         await _channel.BasicConsumeAsync(
-            queue: _rabbitConfig.QueueName, 
-            autoAck: false, 
+            queue: _rabbitConfig.QueueName,
+            autoAck: false,
             consumer: consumer,
             cancellationToken: stoppingToken);
     }

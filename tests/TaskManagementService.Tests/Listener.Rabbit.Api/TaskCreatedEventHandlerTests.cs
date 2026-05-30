@@ -27,12 +27,12 @@ public class TaskCreatedEventHandlerTests
     [Fact]
     public async Task HandleAsync_ShouldLogInformationMessage_WhenTaskProvided()
     {
-        var task = new TaskItem 
-        { 
-            Id = 10, 
-            UserId = "1", 
-            Title = "Rabbit Handler Task", 
-            Status = TaskStatus.New 
+        var task = new TaskItem
+        {
+            Id = 10,
+            UserId = "1",
+            Title = "Rabbit Handler Task",
+            Status = TaskStatus.New
         };
 
         await _handler.HandleAsync(task, CancellationToken.None);

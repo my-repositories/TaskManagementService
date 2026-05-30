@@ -1,0 +1,105 @@
+name: TaskManagementService CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  quality-and-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Check Formatting
+        run: dotnet format --verify-no-changes
+
+      - name: Build Solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests & Collect Coverage
+        run: |
+          dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage" --settings tests/TaskManagementService.Tests/coverlet.runsettings
+
+      - name: Install ReportGenerator Tool
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Generate Reports (XML & HTML)
+        run: |
+          reportgenerator -reports:"**/TestResults/**/coverage.cobertura.xml" -targetdir:"htmlcov" -reporttypes:"Cobertura;Html"
+
+      - name: Install xmlstarlet and bc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xmlstarlet bc
+
+      - name: Parse Coverage Metrics
+        id: coverage_parser
+        run: |
+          LINE_RATE=$(xmlstarlet sel -t -v "/coverage/@line-rate" htmlcov/Cobertura.xml)
+          PERCENTAGE=$(echo "($LINE_RATE * 100) / 1" | bc)
+          echo "DEBUG: Extracted percentage: '$PERCENTAGE'"
+
+          if [ "$PERCENTAGE" -lt 50 ]; then 
+            COLOR="#e05d44" 
+          elif [ "$PERCENTAGE" -lt 80 ]; then 
+            COLOR="#dfb317" 
+          else 
+            COLOR="#44cc11" 
+          fi
+
+          echo "percent=${PERCENTAGE}%" >> $GITHUB_OUTPUT
+          echo "color=${COLOR}" >> $GITHUB_OUTPUT
+
+      - name: Generate Coverage Badge
+        id: badge_generator
+        uses: my-repositories/gha/badge@main
+        with:
+          width: '99'
+          height: '20'
+          text_left: 'coverage'
+          text_right: '${{ steps.coverage_parser.outputs.percent }}'
+          bg_color_right: '${{ steps.coverage_parser.outputs.color }}'
+          filename: 'demo_coverage.svg'
+
+      - name: Isolate Badge for Deploy
+        run: |
+          mkdir -p badge-upload
+          cp "${{ steps.badge_generator.outputs.badge_path }}" badge-upload/demo_coverage.svg
+          
+      - name: Deploy Badge to separate branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: badges
+          folder: badge-upload
+          target-folder: .
+          git-config-name: "github-actions[bot]"
+          git-config-email: "github-actions[bot]@users.noreply.github.com"
+          single-commit: true
+
+      - name: Preparation for HTML Deploy
+        run: |
+          rm -f .gitignore
+          rm -f htmlcov/.gitignore
+          touch htmlcov/.nojekyll
+
+      - name: Deploy Coverage Report
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: htmlcov

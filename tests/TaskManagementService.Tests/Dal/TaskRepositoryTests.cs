@@ -17,7 +17,7 @@ public class TaskRepositoryTests
         var options = new DbContextOptionsBuilder<AppDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-        
+
         _context = new AppDbContext(options);
         _repository = new TaskRepository(_context);
     }
@@ -92,12 +92,12 @@ public class TaskRepositoryTests
 
         _context.Entry(task).State = EntityState.Detached;
 
-        var taskToUpdate = new TaskItem 
-        { 
-            Id = 200, 
-            UserId = "1", 
-            Title = "Updated Title", 
-            Status = TaskStatus.InProgress 
+        var taskToUpdate = new TaskItem
+        {
+            Id = 200,
+            UserId = "1",
+            Title = "Updated Title",
+            Status = TaskStatus.InProgress
         };
 
         await _repository.UpdateAsync(taskToUpdate);

@@ -64,12 +64,12 @@ public class TasksControllerTests
     public async Task Create_ShouldReturnCreatedAtAction_AndCallRepository()
     {
         var dto = new CreateTaskDto { Title = "New Task", Description = "Desc" };
-        
+
         var result = await _controller.Create(dto);
 
         var createdResult = result.Result.Should().BeOfType<CreatedAtActionResult>().Subject;
         createdResult.ActionName.Should().Be(nameof(TasksController.GetById));
-        
+
         var returnedTask = createdResult.Value.Should().BeOfType<TaskItem>().Subject;
         returnedTask.Title.Should().Be("New Task");
         returnedTask.UserId.Should().Be("1");

@@ -11,15 +11,16 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
         modelBuilder.Entity<TaskItem>(entity =>
         {
             entity.HasIndex(t => t.UserId);
             entity.Property(t => t.Title).HasMaxLength(255);
         });
 
-        modelBuilder.Entity<OutboxMessage>(entity => {
-            entity.HasIndex(o => o.ProcessedOn); 
+        modelBuilder.Entity<OutboxMessage>(entity =>
+        {
+            entity.HasIndex(o => o.ProcessedOn);
         });
     }
 }

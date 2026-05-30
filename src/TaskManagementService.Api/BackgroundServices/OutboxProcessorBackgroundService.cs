@@ -42,13 +42,13 @@ public class OutboxProcessorBackgroundService(
                     catch (Exception ex)
                     {
                         logger.LogError(ex, "Ошибка отправки сообщения {Id}", message.Id);
-                        message.Error = ex.Message; 
+                        message.Error = ex.Message;
                     }
                 }
 
                 if (messages.Count > 0)
                 {
-                    await dbContext.SaveChangesAsync(stoppingToken);
+                    await dbContext.SaveChangesAsync(CancellationToken.None);
                 }
             }
             catch (Exception ex)
@@ -56,7 +56,14 @@ public class OutboxProcessorBackgroundService(
                 logger.LogError(ex, "ошибка в обработке сообщения");
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+            }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
         }
     }
 }
