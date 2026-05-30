@@ -1,0 +1,64 @@
+name: Build and Push Microservices to GHCR
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - service_name: api
+            image_suffix: main-api
+            proj_path: src/TaskManagementService.Api/TaskManagementService.Api.csproj
+          - service_name: listener-http
+            image_suffix: http-listener
+            proj_path: src/TaskManagementService.Listener.Http.Api/TaskManagementService.Listener.Http.Api.csproj
+          - service_name: listener-rabbit
+            image_suffix: rabbit-listener
+            proj_path: src/TaskManagementService.Listener.Rabbit.Api/TaskManagementService.Listener.Rabbit.Api.csproj
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push via CLI
+        run: |
+          # 1. Формируем базовое имя образа в нижнем регистре
+          OWNER_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE_TAG="${{ env.REGISTRY }}/${OWNER_LOWER}/taskmanagementservice-${{ matrix.image_suffix }}"
+          
+          # 2. Получаем короткий хэш коммита для тега
+          SHA_TAG="sha-${GITHUB_SHA::7}"
+          
+          echo "Сборка образа: ${IMAGE_TAG}:${SHA_TAG} и ${IMAGE_TAG}:latest"
+          
+          # 3. Собираем Docker-образ через стандартный CLI с передачей аргумента
+          docker build . \
+            --file Dockerfile \
+            --build-arg PROJ_PATH="${{ matrix.proj_path }}" \
+            --tag "${IMAGE_TAG}:${SHA_TAG}" \
+            --tag "${IMAGE_TAG}:latest"
+            
+          # 4. Пушим оба тега в GHCR
+          docker push "${IMAGE_TAG}:${SHA_TAG}"
+          docker push "${IMAGE_TAG}:latest"
