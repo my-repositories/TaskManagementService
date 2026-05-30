@@ -290,47 +290,31 @@ var assemblies = [
   {
     "name": "TaskManagementService.Api",
     "classes": [
-      { "name": "Microsoft.AspNetCore.OpenApi.Generated", "rp": "TaskManagementService.Api_Generated.html", "cl": 0, "ucl": 215, "cal": 215, "tl": 605, "cb": 0, "tb": 206, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "TaskManagementService.Api_Program.html", "cl": 0, "ucl": 20, "cal": 20, "tl": 41, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "System.Runtime.CompilerServices", "rp": "TaskManagementService.Api_CompilerServices.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Api.BackgroundServices.OutboxProcessorBackgroundService", "rp": "TaskManagementService.Api_OutboxProcessorBackgroundService.html", "cl": 31, "ucl": 4, "cal": 35, "tl": 69, "cb": 8, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Api.Controllers.TasksController", "rp": "TaskManagementService.Api_TasksController.html", "cl": 32, "ucl": 0, "cal": 32, "tl": 67, "cb": 6, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Api.Services.TaskEventService", "rp": "TaskManagementService.Api_TaskEventService.html", "cl": 31, "ucl": 21, "cal": 52, "tl": 87, "cb": 2, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Api.BackgroundServices.OutboxProcessorBackgroundService", "rp": "TaskManagementService.Api_OutboxProcessorBackgroundService.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 69, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Api.Controllers.TasksController", "rp": "TaskManagementService.Api_TasksController.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 67, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Api.Services.TaskEventService", "rp": "TaskManagementService.Api_TaskEventService.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 87, "cb": 1, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "TaskManagementService.Dal",
     "classes": [
       { "name": "TaskManagementService.Dal.AppDbContext", "rp": "TaskManagementService.Dal_AppDbContext.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 26, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Dal.Repositories.TaskRepository", "rp": "TaskManagementService.Dal_TaskRepository.html", "cl": 24, "ucl": 0, "cal": 24, "tl": 49, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-    ]},
-  {
-    "name": "TaskManagementService.Domain",
-    "classes": [
-      { "name": "TaskManagementService.Domain.Configurations.RabbitMqOptions", "rp": "TaskManagementService.Domain_RabbitMqOptions.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Domain.Dto.CreateTaskDto", "rp": "TaskManagementService.Domain_CreateTaskDto.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 7, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Domain.Dto.UpdateTaskDto", "rp": "TaskManagementService.Domain_UpdateTaskDto.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 8, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Domain.Models.OutboxMessage", "rp": "TaskManagementService.Domain_OutboxMessage.html", "cl": 6, "ucl": 0, "cal": 6, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Domain.Models.TaskItem", "rp": "TaskManagementService.Domain_TaskItem.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Dal.Repositories.TaskRepository", "rp": "TaskManagementService.Dal_TaskRepository.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 49, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "TaskManagementService.Listener.Http.Api",
     "classes": [
-      { "name": "Microsoft.AspNetCore.OpenApi.Generated", "rp": "TaskManagementService.Listener.Http.Api_Generated.html", "cl": 0, "ucl": 215, "cal": 215, "tl": 605, "cb": 0, "tb": 206, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "TaskManagementService.Listener.Http.Api_Program.html", "cl": 0, "ucl": 10, "cal": 10, "tl": 23, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "System.Runtime.CompilerServices", "rp": "TaskManagementService.Listener.Http.Api_CompilerServices.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Http.Api.Controllers.TaskEventsController", "rp": "TaskManagementService.Listener.Http.Api_TaskEventsController.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "TaskManagementService.Listener.Rabbit.Api",
     "classes": [
-      { "name": "Microsoft.AspNetCore.OpenApi.Generated", "rp": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "cl": 0, "ucl": 210, "cal": 210, "tl": 592, "cb": 0, "tb": 206, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "TaskManagementService.Listener.Rabbit.Api_Program.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "System.Runtime.CompilerServices", "rp": "TaskManagementService.Listener.Rabbit.Api_CompilerServices.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "rp": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "cl": 8, "ucl": 64, "cal": 72, "tl": 104, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskCreatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskCreatedEventHandler.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskDeletedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskDeletedEventHandler.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskUpdatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskUpdatedEventHandler.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "TaskManagementService.Listener.Rabbit.Api.Models.TaskEventMessage", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskEventMessage.html", "cl": 0, "ucl": 2, "cal": 2, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "rp": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "cl": 8, "ucl": 4, "cal": 12, "tl": 104, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskCreatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskCreatedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskDeletedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskDeletedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskUpdatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskUpdatedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
 ];
 
@@ -339,143 +323,9 @@ var metrics = [{ "name": "Crap Score", "abbreviation": "crp", "explanationUrl": 
 var historicCoverageExecutionTimes = [];
 
 var riskHotspotMetrics = [
-      { "name": "Crap Score", "explanationUrl": "https://googletesting.blogspot.de/2011/02/this-code-is-crap.html" },
-      { "name": "Cyclomatic complexity", "explanationUrl": "https://en.wikipedia.org/wiki/Cyclomatic_complexity" },
 ];
 
 var riskHotspots = [
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiOperation,Microsoft.AspNetCore.OpenApi.OpenApiOperationTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 346,
-    "metrics": [
-      { "value": 8930, "exceeded": true },
-      { "value": 94, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiOperation,Microsoft.AspNetCore.OpenApi.OpenApiOperationTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 346,
-    "metrics": [
-      { "value": 8930, "exceeded": true },
-      { "value": 94, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiOperation,Microsoft.AspNetCore.OpenApi.OpenApiOperationTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 346,
-    "metrics": [
-      { "value": 8930, "exceeded": true },
-      { "value": 94, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiSchema,Microsoft.AspNetCore.OpenApi.OpenApiSchemaTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 513,
-    "metrics": [
-      { "value": 1190, "exceeded": true },
-      { "value": 34, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiSchema,Microsoft.AspNetCore.OpenApi.OpenApiSchemaTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 513,
-    "metrics": [
-      { "value": 1190, "exceeded": true },
-      { "value": 34, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "TransformAsync(Microsoft.OpenApi.OpenApiSchema,Microsoft.AspNetCore.OpenApi.OpenApiSchemaTransformerContext,System.Threading.CancellationToken)", "methodShortName": "TransformAsync(...)", "fileIndex": 0, "line": 513,
-    "metrics": [
-      { "value": 1190, "exceeded": true },
-      { "value": 34, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "GetTypeDocId(System.Type,System.Boolean,System.Boolean)", "methodShortName": "GetTypeDocId(...)", "fileIndex": 0, "line": 239,
-    "metrics": [
-      { "value": 812, "exceeded": true },
-      { "value": 28, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "GetTypeDocId(System.Type,System.Boolean,System.Boolean)", "methodShortName": "GetTypeDocId(...)", "fileIndex": 0, "line": 239,
-    "metrics": [
-      { "value": 812, "exceeded": true },
-      { "value": 28, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "GetTypeDocId(System.Type,System.Boolean,System.Boolean)", "methodShortName": "GetTypeDocId(...)", "fileIndex": 0, "line": 239,
-    "metrics": [
-      { "value": 812, "exceeded": true },
-      { "value": 28, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.MethodInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 169,
-    "metrics": [
-      { "value": 342, "exceeded": true },
-      { "value": 18, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.MethodInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 169,
-    "metrics": [
-      { "value": 342, "exceeded": true },
-      { "value": 18, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.MethodInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 169,
-    "metrics": [
-      { "value": 342, "exceeded": true },
-      { "value": 18, "exceeded": true },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.PropertyInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 101,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.PropertyInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 101,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "CreateDocumentationId(System.Reflection.PropertyInfo)", "methodShortName": "CreateDocumentationId(...)", "fileIndex": 0, "line": 101,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "reportPath": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "methodName": "\u003CExecuteAsync()", "methodShortName": "\u003CExecuteAsync()", "fileIndex": 0, "line": 55,
-    "metrics": [
-      { "value": 110, "exceeded": true },
-      { "value": 10, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "NormalizeDocId(System.String)", "methodShortName": "NormalizeDocId(...)", "fileIndex": 0, "line": 322,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Api_Generated.html", "methodName": "UnwrapOpenApiParameter(Microsoft.OpenApi.IOpenApiParameter)", "methodShortName": "UnwrapOpenApiParameter(...)", "fileIndex": 0, "line": 485,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "NormalizeDocId(System.String)", "methodShortName": "NormalizeDocId(...)", "fileIndex": 0, "line": 322,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Http.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Http.Api_Generated.html", "methodName": "UnwrapOpenApiParameter(Microsoft.OpenApi.IOpenApiParameter)", "methodShortName": "UnwrapOpenApiParameter(...)", "fileIndex": 0, "line": 485,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "NormalizeDocId(System.String)", "methodShortName": "NormalizeDocId(...)", "fileIndex": 0, "line": 322,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
-  {
-    "assembly": "TaskManagementService.Listener.Rabbit.Api", "class": "Microsoft.AspNetCore.OpenApi.Generated", "reportPath": "TaskManagementService.Listener.Rabbit.Api_Generated.html", "methodName": "UnwrapOpenApiParameter(Microsoft.OpenApi.IOpenApiParameter)", "methodShortName": "UnwrapOpenApiParameter(...)", "fileIndex": 0, "line": 485,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
-    ]},
 ];
 
 var branchCoverageAvailable = true;
