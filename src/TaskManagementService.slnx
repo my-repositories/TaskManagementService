@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="TaskManagementService.Api/TaskManagementService.Api.csproj" />
+  <Project Path="TaskManagementService.Dal/TaskManagementService.Dal.csproj" />
+  <Project Path="TaskManagementService.Domain/TaskManagementService.Domain.csproj" />
 </Solution>
