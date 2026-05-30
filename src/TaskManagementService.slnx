@@ -3,4 +3,5 @@
   <Project Path="TaskManagementService.Dal/TaskManagementService.Dal.csproj" />
   <Project Path="TaskManagementService.Domain/TaskManagementService.Domain.csproj" />
   <Project Path="TaskManagementService.Listener.Http.Api/TaskManagementService.Listener.Http.Api.csproj" />
+  <Project Path="TaskManagementService.Listener.Rabbit.Api/TaskManagementService.Listener.Rabbit.Api.csproj" />
 </Solution>

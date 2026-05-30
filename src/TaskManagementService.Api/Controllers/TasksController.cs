@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementService.Domain.Dto;
+using TaskManagementService.Domain.Enums;
 using TaskManagementService.Domain.Interfaces;
 using TaskManagementService.Domain.Models;
 
@@ -37,7 +38,7 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         };
 
         await taskRepository.AddAsync(task);
-        await eventService.NotifyAsync("Created", task);
+        await eventService.NotifyAsync(TaskEvent.Created.ToString(), task);
         return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
     }
 
@@ -53,7 +54,7 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         task.UpdatedAt = DateTime.UtcNow;
 
         await taskRepository.UpdateAsync(task);
-        await eventService.NotifyAsync("Updated", task);
+        await eventService.NotifyAsync(TaskEvent.Updated.ToString(), task);
         return NoContent();
     }
 
@@ -64,7 +65,7 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         if (task is null) return NotFound();
 
         await taskRepository.DeleteAsync(task);
-        await eventService.NotifyAsync("Deleted", task);
+        await eventService.NotifyAsync(TaskEvent.Deleted.ToString(), task);
         return NoContent();
     }
 }

@@ -1,0 +1,6 @@
+@TaskManagementService.Listener.Rabbit.Api_HostAddress = http://localhost:5250
+
+GET {{TaskManagementService.Listener.Rabbit.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
