@@ -6,12 +6,23 @@ using System.Text.Json;
 
 namespace TaskManagementService.Api.BackgroundServices;
 
+/// <summary>
+/// Фоновый сервис для обработки и отправки сообщений из таблицы Outbox.
+/// </summary>
+/// <param name="scopeFactory">Фабрика для создания Scoped зависимостей.</param>
+/// <param name="eventService">Сервис уведомлений для отправки событий.</param>
+/// <param name="logger">Компонент логирования.</param>
 public class OutboxProcessorBackgroundService(
     IServiceScopeFactory scopeFactory,
     ITaskEventService eventService,
     ILogger<OutboxProcessorBackgroundService> logger
 ) : BackgroundService
 {
+    /// <summary>
+    /// Основной цикл обработки очереди отложенных сообщений.
+    /// </summary>
+    /// <param name="stoppingToken">Токен отмены операции.</param>
+    /// <returns>Задача, представляющая асинхронную операцию воркера.</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)

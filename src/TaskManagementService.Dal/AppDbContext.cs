@@ -3,11 +3,26 @@ using TaskManagementService.Domain.Models;
 
 namespace TaskManagementService.Dal;
 
+/// <summary>
+/// Контекст базы данных для управления задачами и сообщениями Outbox.
+/// </summary>
+/// <param name="options">Параметры конфигурации контекста.</param>
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
+    /// <summary>
+    /// Таблица задач.
+    /// </summary>
     public DbSet<TaskItem> Tasks => Set<TaskItem>();
+
+    /// <summary>
+    /// Таблица исходящих интеграционных сообщений.
+    /// </summary>
     public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
 
+    /// <summary>
+    /// Конфигурация ограничений моделей и индексов базы данных.
+    /// </summary>
+    /// <param name="modelBuilder">Построитель моделей данных.</param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

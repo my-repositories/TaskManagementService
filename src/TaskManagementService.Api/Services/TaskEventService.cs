@@ -8,6 +8,13 @@ using TaskManagementService.Domain.Models;
 
 namespace TaskManagementService.Api.Services;
 
+/// <summary>
+/// Сервис для отправки уведомлений об изменениях задач внешним подписчикам по HTTP и RabbitMQ.
+/// </summary>
+/// <param name="httpClient">HTTP-клиент для отправки синхронных запросов.</param>
+/// <param name="configuration">Конфигурация приложения.</param>
+/// <param name="logger">Компонент для логирования ошибок и событий.</param>
+/// <param name="rabbitOptions">Параметры подключения к RabbitMQ.</param>
 public class TaskEventService
 (
     HttpClient httpClient,
@@ -21,7 +28,11 @@ public class TaskEventService
 
     private readonly RabbitMqOptions _rabbitConfig = rabbitOptions.Value;
 
-
+    /// <summary>
+    /// Параллельно отправляет уведомления по HTTP и через брокер сообщений.
+    /// </summary>
+    /// <param name="action">Тип события (создание, изменение, удаление).</param>
+    /// <param name="task">Объект задачи, с которым связано событие.</param>
     public async Task NotifyAsync(string action, TaskItem task)
     {
         await Task.WhenAll
@@ -31,7 +42,12 @@ public class TaskEventService
         );
     }
 
-    public async Task NotifyHttpListenerAsync(string action, TaskItem task)
+    /// <summary>
+    /// Отправляет синхронный HTTP POST запрос на адрес веб-слушателя.
+    /// </summary>
+    /// <param name="action">Тип события.</param>
+    /// <param name="task">Объект задачи.</param>
+    private async Task NotifyHttpListenerAsync(string action, TaskItem task)
     {
         var payload = JsonSerializer.Serialize(task);
 
@@ -49,7 +65,12 @@ public class TaskEventService
         }
     }
 
-    public async Task NotifyMqListenerAsync(string action, TaskItem task)
+    /// <summary>
+    /// Публикует асинхронное событие в очередь брокера RabbitMQ.
+    /// </summary>
+    /// <param name="action">Тип события.</param>
+    /// <param name="task">Объект задачи.</param>
+    private async Task NotifyMqListenerAsync(string action, TaskItem task)
     {
         try
         {

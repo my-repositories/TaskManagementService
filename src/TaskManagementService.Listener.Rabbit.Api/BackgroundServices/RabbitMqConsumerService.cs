@@ -9,6 +9,9 @@ using TaskManagementService.Listener.Rabbit.Api.Models;
 
 namespace TaskManagementService.Listener.Rabbit.Api.BackgroundServices;
 
+/// <summary>
+/// Фоновый сервис для непрерывного чтения и распределения интеграционных сообщений из очереди RabbitMQ.
+/// </summary>
 public class RabbitMqConsumerService : BackgroundService
 {
     private readonly ILogger<RabbitMqConsumerService> _logger;
@@ -17,6 +20,12 @@ public class RabbitMqConsumerService : BackgroundService
     private IConnection? _connection;
     private IChannel? _channel;
 
+    /// <summary>
+    /// Инициализирует новый экземпляр фонового сервиса RabbitMqConsumerService.
+    /// </summary>
+    /// <param name="logger">Компонент для логирования.</param>
+    /// <param name="options">Конфигурационные параметры подключения к RabbitMQ.</param>
+    /// <param name="scopeFactory">Фабрика для управления контекстами зависимостей Scoped.</param>
     public RabbitMqConsumerService(
         ILogger<RabbitMqConsumerService> logger,
         IOptions<RabbitMqOptions> options,
@@ -27,6 +36,11 @@ public class RabbitMqConsumerService : BackgroundService
         _scopeFactory = scopeFactory;
     }
 
+    /// <summary>
+    /// Запускает асинхронный процесс прослушивания очереди брокера сообщений.
+    /// </summary>
+    /// <param name="stoppingToken">Токен отмены выполнения фонового процесса.</param>
+    /// <returns>Задача, представляющая асинхронное выполнение воркера.</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         stoppingToken.ThrowIfCancellationRequested();
@@ -95,6 +109,9 @@ public class RabbitMqConsumerService : BackgroundService
             cancellationToken: stoppingToken);
     }
 
+    /// <summary>
+    /// Освобождает неуправляемые ресурсы, используемые для подключения к RabbitMQ.
+    /// </summary>
     public override void Dispose()
     {
         _channel?.Dispose();
