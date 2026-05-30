@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementService.Domain.Dto;
-using TaskManagementService.Domain.Enums;
 using TaskManagementService.Domain.Interfaces;
 using TaskManagementService.Domain.Models;
 
@@ -8,7 +7,7 @@ namespace TaskManagementService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TasksController(ITaskRepository taskRepository, ITaskEventService eventService) : ControllerBase
+public class TasksController(ITaskRepository taskRepository) : ControllerBase
 {
     private string CurrentUserId => "1";
 
@@ -38,7 +37,6 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         };
 
         await taskRepository.AddAsync(task);
-        await eventService.NotifyAsync(TaskEvent.Created.ToString(), task);
         return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
     }
 
@@ -54,7 +52,6 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         task.UpdatedAt = DateTime.UtcNow;
 
         await taskRepository.UpdateAsync(task);
-        await eventService.NotifyAsync(TaskEvent.Updated.ToString(), task);
         return NoContent();
     }
 
@@ -65,7 +62,6 @@ public class TasksController(ITaskRepository taskRepository, ITaskEventService e
         if (task is null) return NotFound();
 
         await taskRepository.DeleteAsync(task);
-        await eventService.NotifyAsync(TaskEvent.Deleted.ToString(), task);
         return NoContent();
     }
 }
