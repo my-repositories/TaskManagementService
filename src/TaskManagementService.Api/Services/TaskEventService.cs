@@ -60,7 +60,6 @@ public class TaskEventService
                 Password = _rabbitConfig.Password
             };
 
-            // Используем современный асинхронный синтаксис RabbitMQ.Client
             using var connection = await factory.CreateConnectionAsync();
             using var channel = await connection.CreateChannelAsync();
 
