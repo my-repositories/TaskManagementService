@@ -7,7 +7,7 @@ namespace TaskManagementService.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TasksController(ITaskRepository taskRepository) : ControllerBase
+public class TasksController(ITaskRepository taskRepository, ITaskEventService eventService) : ControllerBase
 {
     private string CurrentUserId => "1";
 
@@ -37,6 +37,7 @@ public class TasksController(ITaskRepository taskRepository) : ControllerBase
         };
 
         await taskRepository.AddAsync(task);
+        await eventService.NotifyAsync("Created", task);
         return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
     }
 
@@ -52,6 +53,7 @@ public class TasksController(ITaskRepository taskRepository) : ControllerBase
         task.UpdatedAt = DateTime.UtcNow;
 
         await taskRepository.UpdateAsync(task);
+        await eventService.NotifyAsync("Updated", task);
         return NoContent();
     }
 
@@ -62,6 +64,7 @@ public class TasksController(ITaskRepository taskRepository) : ControllerBase
         if (task is null) return NotFound();
 
         await taskRepository.DeleteAsync(task);
+        await eventService.NotifyAsync("Deleted", task);
         return NoContent();
     }
 }

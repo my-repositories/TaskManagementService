@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TaskManagementService.Api.Services;
 using TaskManagementService.Dal;
 using TaskManagementService.Dal.Repositories;
 using TaskManagementService.Domain.Interfaces;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddHttpClient<ITaskEventService, TaskEventService>();
 
 var app = builder.Build();
 
