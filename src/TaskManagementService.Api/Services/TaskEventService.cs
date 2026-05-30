@@ -47,7 +47,7 @@ public class TaskEventService
     /// </summary>
     /// <param name="action">Тип события.</param>
     /// <param name="task">Объект задачи.</param>
-    private async Task NotifyHttpListenerAsync(string action, TaskItem task)
+    public async Task NotifyHttpListenerAsync(string action, TaskItem task)
     {
         var payload = JsonSerializer.Serialize(task);
 
@@ -70,7 +70,7 @@ public class TaskEventService
     /// </summary>
     /// <param name="action">Тип события.</param>
     /// <param name="task">Объект задачи.</param>
-    private async Task NotifyMqListenerAsync(string action, TaskItem task)
+    public async Task NotifyMqListenerAsync(string action, TaskItem task)
     {
         try
         {

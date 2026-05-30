@@ -35,7 +35,9 @@ services:
     ports:
       - "5001:8080"
     environment:
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=task_db;Username=postgres;Password=your_password
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=tasks_db;Username=postgres;Password=postgres
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
       - ExternalServices__HttpListenerUrl=http://http-listener:8080/api/tasks/events
       - ExternalServices__RabbitMqOptions__Host=rabbitmq
       - ExternalServices__RabbitMqOptions__QueueName=task-events-queue

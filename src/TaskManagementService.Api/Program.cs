@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using TaskManagementService.Api.BackgroundServices;
 using TaskManagementService.Api.Services;
 using TaskManagementService.Dal;
@@ -22,9 +25,19 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddHttpClient<ITaskEventService, TaskEventService>();
 builder.Services.AddHostedService<OutboxProcessorBackgroundService>();
 
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing =>
+    {
+        tracing
+            .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("TaskManagementService.Api"))
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddNpgsql()
+            .AddOtlpExporter();
+    });
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
