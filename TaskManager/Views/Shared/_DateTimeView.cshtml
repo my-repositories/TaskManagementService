@@ -1,8 +1,0 @@
-﻿@model long
-
-@{
-    var unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-    var unixTimeStampInTicks = Model * TimeSpan.TicksPerSecond;
-    var date = new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Utc).ToString("MMMM dd, yyyy, H:mm");
-    <span class="date-time-view">@date</span>
-}
