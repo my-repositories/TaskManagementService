@@ -1,62 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.6020408163265306" branch-rate="0.1" lines-covered="59" lines-valid="98" branches-covered="1" branches-valid="10" complexity="29" version="0" timestamp="1780137967">
+<coverage line-rate="0.9365079365079365" branch-rate="0.16666666666666666" lines-covered="59" lines-valid="63" branches-covered="1" branches-valid="6" complexity="24" version="0" timestamp="1780138081">
   <sources>
     <source>/home/runner/work/TaskManagementService/TaskManagementService/src/</source>
   </sources>
   <packages>
-    <package name="TaskManagementService.Api" line-rate="0.4594594594594595" branch-rate="0.25" complexity="7">
+    <package name="TaskManagementService.Api" line-rate="1" branch-rate="0.5" complexity="5">
       <classes>
-        <class name="Program" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Api/Program.cs" line-rate="0" branch-rate="0" complexity="2">
-          <methods>
-            <method name="&lt;Main&gt;$" signature="(System.String[])" line-rate="0" branch-rate="0" complexity="2">
-              <lines>
-                <line number="9" hits="0" branch="false" />
-                <line number="11" hits="0" branch="false" />
-                <line number="12" hits="0" branch="false" />
-                <line number="15" hits="0" branch="false" />
-                <line number="16" hits="0" branch="false" />
-                <line number="17" hits="0" branch="false" />
-                <line number="18" hits="0" branch="false" />
-                <line number="19" hits="0" branch="false" />
-                <line number="21" hits="0" branch="false" />
-                <line number="22" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
-                <line number="25" hits="0" branch="false" />
-                <line number="28" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="30" hits="0" branch="false" />
-                <line number="31" hits="0" branch="false" />
-                <line number="32" hits="0" branch="false" />
-                <line number="35" hits="0" branch="false" />
-                <line number="37" hits="0" branch="false" />
-                <line number="39" hits="0" branch="false" />
-                <line number="41" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="9" hits="0" branch="false" />
-            <line number="11" hits="0" branch="false" />
-            <line number="12" hits="0" branch="false" />
-            <line number="15" hits="0" branch="false" />
-            <line number="16" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-            <line number="18" hits="0" branch="false" />
-            <line number="19" hits="0" branch="false" />
-            <line number="21" hits="0" branch="false" />
-            <line number="22" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
-            <line number="25" hits="0" branch="false" />
-            <line number="28" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="30" hits="0" branch="false" />
-            <line number="31" hits="0" branch="false" />
-            <line number="32" hits="0" branch="false" />
-            <line number="35" hits="0" branch="false" />
-            <line number="37" hits="0" branch="false" />
-            <line number="39" hits="0" branch="false" />
-            <line number="41" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="TaskManagementService.Api.BackgroundServices.OutboxProcessorBackgroundService" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Api/BackgroundServices/OutboxProcessorBackgroundService.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
             <method name=".ctor" signature="(Microsoft.Extensions.DependencyInjection.IServiceScopeFactory,TaskManagementService.Domain.Interfaces.ITaskEventService,Microsoft.Extensions.Logging.ILogger`1&lt;TaskManagementService.Api.BackgroundServices.OutboxProcessorBackgroundService&gt;)" line-rate="1" branch-rate="1" complexity="1">
@@ -215,38 +165,8 @@
         </class>
       </classes>
     </package>
-    <package name="TaskManagementService.Listener.Http.Api" line-rate="0.2857142857142857" branch-rate="0" complexity="4">
+    <package name="TaskManagementService.Listener.Http.Api" line-rate="1" branch-rate="1" complexity="2">
       <classes>
-        <class name="Program" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Listener.Http.Api/Program.cs" line-rate="0" branch-rate="0" complexity="2">
-          <methods>
-            <method name="&lt;Main&gt;$" signature="(System.String[])" line-rate="0" branch-rate="0" complexity="2">
-              <lines>
-                <line number="1" hits="0" branch="false" />
-                <line number="5" hits="0" branch="false" />
-                <line number="7" hits="0" branch="false" />
-                <line number="9" hits="0" branch="false" />
-                <line number="12" hits="0" branch="true" condition-coverage="0% (0/2)" />
-                <line number="14" hits="0" branch="false" />
-                <line number="17" hits="0" branch="false" />
-                <line number="19" hits="0" branch="false" />
-                <line number="21" hits="0" branch="false" />
-                <line number="23" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="1" hits="0" branch="false" />
-            <line number="5" hits="0" branch="false" />
-            <line number="7" hits="0" branch="false" />
-            <line number="9" hits="0" branch="false" />
-            <line number="12" hits="0" branch="true" condition-coverage="0% (0/2)" />
-            <line number="14" hits="0" branch="false" />
-            <line number="17" hits="0" branch="false" />
-            <line number="19" hits="0" branch="false" />
-            <line number="21" hits="0" branch="false" />
-            <line number="23" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="TaskManagementService.Listener.Http.Api.Controllers.TaskEventsController" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Listener.Http.Api/Controllers/TaskEventsController.cs" line-rate="1" branch-rate="1" complexity="2">
           <methods>
             <method name="HandleEvent" signature="(System.String,TaskManagementService.Domain.Models.TaskItem)" line-rate="1" branch-rate="1" complexity="1">
@@ -271,28 +191,8 @@
         </class>
       </classes>
     </package>
-    <package name="TaskManagementService.Listener.Rabbit.Api" line-rate="0.6086956521739131" branch-rate="0" complexity="12">
+    <package name="TaskManagementService.Listener.Rabbit.Api" line-rate="0.7777777777777778" branch-rate="0" complexity="11">
       <classes>
-        <class name="Program" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Listener.Rabbit.Api/Program.cs" line-rate="0" branch-rate="1" complexity="1">
-          <methods>
-            <method name="&lt;Main&gt;$" signature="(System.String[])" line-rate="0" branch-rate="1" complexity="1">
-              <lines>
-                <line number="4" hits="0" branch="false" />
-                <line number="7" hits="0" branch="false" />
-                <line number="8" hits="0" branch="false" />
-                <line number="10" hits="0" branch="false" />
-                <line number="12" hits="0" branch="false" />
-              </lines>
-            </method>
-          </methods>
-          <lines>
-            <line number="4" hits="0" branch="false" />
-            <line number="7" hits="0" branch="false" />
-            <line number="8" hits="0" branch="false" />
-            <line number="10" hits="0" branch="false" />
-            <line number="12" hits="0" branch="false" />
-          </lines>
-        </class>
         <class name="TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService" filename="/home/runner/work/TaskManagementService/TaskManagementService/src/TaskManagementService.Listener.Rabbit.Api/BackgroundServices/RabbitMqConsumerService.cs" line-rate="0.6666666666666666" branch-rate="0" complexity="5">
           <methods>
             <method name="Dispose" signature="()" line-rate="0" branch-rate="0" complexity="4">

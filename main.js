@@ -290,7 +290,6 @@ var assemblies = [
   {
     "name": "TaskManagementService.Api",
     "classes": [
-      { "name": "Program", "rp": "TaskManagementService.Api_Program.html", "cl": 0, "ucl": 20, "cal": 20, "tl": 41, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Api.BackgroundServices.OutboxProcessorBackgroundService", "rp": "TaskManagementService.Api_OutboxProcessorBackgroundService.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 69, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Api.Controllers.TasksController", "rp": "TaskManagementService.Api_TasksController.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 67, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Api.Services.TaskEventService", "rp": "TaskManagementService.Api_TaskEventService.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 87, "cb": 1, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -304,13 +303,11 @@ var assemblies = [
   {
     "name": "TaskManagementService.Listener.Http.Api",
     "classes": [
-      { "name": "Program", "rp": "TaskManagementService.Listener.Http.Api_Program.html", "cl": 0, "ucl": 10, "cal": 10, "tl": 23, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Http.Api.Controllers.TaskEventsController", "rp": "TaskManagementService.Listener.Http.Api_TaskEventsController.html", "cl": 4, "ucl": 0, "cal": 4, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "TaskManagementService.Listener.Rabbit.Api",
     "classes": [
-      { "name": "Program", "rp": "TaskManagementService.Listener.Rabbit.Api_Program.html", "cl": 0, "ucl": 5, "cal": 5, "tl": 12, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "rp": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "cl": 8, "ucl": 4, "cal": 12, "tl": 104, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskCreatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskCreatedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskDeletedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskDeletedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 16, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
