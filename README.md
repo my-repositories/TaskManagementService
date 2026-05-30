@@ -1,40 +1,54 @@
-# TaskManager
-## Prerequisites
+# TaskManagementService
 
-Run this command in Package Manager Console
+[![CI](https://github.com/my-repositories/TaskManagementService/actions/workflows/main.yml/badge.svg)](https://github.com/my-repositories/TaskManagementService/actions/workflows/main.yml)
+[![Coverage](https://raw.githubusercontent.com/my-repositories/TaskManagementService/refs/heads/badges/demo_coverage.svg)](https://my-repositories.github.io/TaskManagementService)
 
-```
-Update-Database
-```
 
-----
+# Task Management Service
 
-See this [demo project](http://18.217.229.120:8002/) on Amazon Web Service.
+## Проекты
+* `src/TaskManagementService.Api` — Основное CRUD API. Содержит фоновый воркер OutboxProcessorBackgroundService.
+* `src/TaskManagementService.Dal` — База данных (EF Core + PostgreSQL). Таблицы задач и outbox-сообщений.
+* `src/TaskManagementService.Domain` — Модели, DTO, интерфейсы.
+* `src/TaskManagementService.Listener.Http.Api` — Синхронное взаимодействие между сервисами.
+* `src/TaskManagementService.Listener.Rabbit.Api` — Асинхронное взаимодействие между сервисами через очередь
+сообщений.
+* `tests/` — xUnit тесты.
 
-----
-
-If you want deploy this project on production server with .NET Core, follow this instructions:
-
-## Install
-- .NET Core
-  - [for Linux](https://www.microsoft.com/net/learn/get-started/linuxubuntu)
-  - [for macOs](https://www.microsoft.com/net/learn/get-started/macos)
-  - [for Windows](https://www.microsoft.com/net/learn/get-started/windows)
-
-## Build
+## Запуск через Docker (Все сервисы + БД + Брокер)
 ```bash
-dotnet build TaskManager.csproj -c Release
+docker compose up -d --build
+```
 
-ln -s $(pwd)/appsettings.json $(pwd)/bin/Release/netcoreapp2.0/appsettings.json
-ln -s $(pwd)/wwwroot $(pwd)/bin/Release/netcoreapp2.0/wwwroot
-```
-## Configure
+### Порты:
+* API + Swagger: `http://localhost:5222/swagger`
+* HTTP Listener: `http://localhost:5260`
+* RabbitMQ UI: `http://localhost:15672` (guest/guest)
+
+---
+
+## Локальный запуск (Разработка)
+
+### 1. Поднять БД и Брокер
 ```bash
-dotnet restore
-dotnet ef database update
+docker compose up -d postgres rabbitmq
 ```
-## Startup
+
+### 2. Накатить миграции
 ```bash
-cd ./bin/Release/netcoreapp2.0/
-dotnet TaskManager.dll
+dotnet ef database update -p src/TaskManagementService.Dal -s src/TaskManagementService.Api
+```
+
+### 3. Запустить сервисы
+```bash
+dotnet run --project src/TaskManagementService.Api
+dotnet run --project src/TaskManagementService.Listener.Http.Api
+dotnet run --project src/TaskManagementService.Listener.Rabbit.Api
+```
+
+---
+
+## Тесты
+```bash
+dotnet test
 ```
