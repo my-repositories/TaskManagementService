@@ -16,8 +16,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMqOptions"));
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("MyTestDatabase")); 
-    // options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddHttpClient<ITaskEventService, TaskEventService>();
