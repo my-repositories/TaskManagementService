@@ -7,8 +7,10 @@
           <Format>cobertura</Format>
           <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
           <Exclude>
-            [*]*OpenApi* overlay,
-            [*]*Generated* overlay,
+            [*]*OpenApi*,
+            [*]*Generated*,
+            [*]*CompilerGenerated*,
+            [*]Program,
             [TaskManagementService.Tests]*
           </Exclude>
           <Include>
