@@ -22,6 +22,6 @@ public class TaskCreatedEventHandler(ILogger<TaskCreatedEventHandler> logger) : 
     /// <returns>Задача, представляющая асинхронную операцию обработки.</returns>
     public async Task HandleAsync(TaskItem task, CancellationToken cancellationToken)
     {
-        logger.LogInformation("создание задачи #{Id}: {Title}, Статус: {Status}", task.Id, task.Title, task.Status);
+        logger.LogInformation("создание задачи: {Title}, Статус: {Status}", task.Id, task.Title, task.Status);
     }
 }
