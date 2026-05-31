@@ -298,6 +298,8 @@ var assemblies = [
     "name": "TaskManagementService.Dal",
     "classes": [
       { "name": "TaskManagementService.Dal.AppDbContext", "rp": "TaskManagementService.Dal_AppDbContext.html", "cl": 14, "ucl": 0, "cal": 14, "tl": 41, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Dal.Migrations.AppDbContextModelSnapshot", "rp": "TaskManagementService.Dal_AppDbContextModelSnapshot.html", "cl": 0, "ucl": 69, "cal": 69, "tl": 93, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Dal.Migrations.Initial", "rp": "TaskManagementService.Dal_Initial.html", "cl": 0, "ucl": 115, "cal": 115, "tl": 166, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Dal.Repositories.TaskRepository", "rp": "TaskManagementService.Dal_TaskRepository.html", "cl": 10, "ucl": 0, "cal": 10, "tl": 82, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
@@ -308,7 +310,8 @@ var assemblies = [
   {
     "name": "TaskManagementService.Listener.Rabbit.Api",
     "classes": [
-      { "name": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "rp": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "cl": 8, "ucl": 4, "cal": 12, "tl": 121, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.BackgroundServices.RabbitMqConsumerService", "rp": "TaskManagementService.Listener.Rabbit.Api_RabbitMqConsumerService.html", "cl": 8, "ucl": 4, "cal": 12, "tl": 154, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "TaskManagementService.Listener.Rabbit.Api.Extensions.HandlerExtensions", "rp": "TaskManagementService.Listener.Rabbit.Api_HandlerExtensions.html", "cl": 0, "ucl": 6, "cal": 6, "tl": 22, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskCreatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskCreatedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskDeletedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskDeletedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "TaskManagementService.Listener.Rabbit.Api.Handlers.TaskUpdatedEventHandler", "rp": "TaskManagementService.Listener.Rabbit.Api_TaskUpdatedEventHandler.html", "cl": 2, "ucl": 0, "cal": 2, "tl": 27, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
