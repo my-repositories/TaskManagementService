@@ -1,82 +1,100 @@
-version: '3.8'
-
 services:
-  postgres:
-    image: postgres:16-alpine
-    container_name: task-postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: tasks_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    tmspostgres:
+        image: postgres:16-alpine
+        container_name: tmspostgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: tasks_db
+        ports:
+            - "5432:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres -d tasks_db"]
+            interval: 3s
+            timeout: 3s
+            retries: 5
 
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    container_name: task-rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
+    tmsdbpga:
+        image: dpage/pgadmin4
+        depends_on:
+            tmspostgres:
+                condition: service_healthy
+        hostname: tmsdbpga
+        container_name: tmsdbpga
+        labels:
+            - SERVICE_NAME=tmsdbpga
+        restart: always
+        environment:
+            - PGADMIN_DEFAULT_EMAIL=postgres@postgres.com
+            - PGADMIN_DEFAULT_PASSWORD=postgres
+        ports:
+            - "5050:80"
+        volumes:
+            - ./tools/dbpga/servers.json:/pgadmin4/servers.json
 
-  main-api:
-    image: task-main-api
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        PROJ_PATH: src/TaskManagementService.Api/TaskManagementService.Api.csproj
-    container_name: task-main-api
-    entrypoint: ["dotnet", "TaskManagementService.Api.dll"]
-    ports:
-      - "5001:8080"
-    environment:
-    environment:
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=tasks_db;Username=postgres;Password=postgres
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
-      - ExternalServices__HttpListenerUrl=http://http-listener:8080/api/tasks/events
-      - ExternalServices__RabbitMqOptions__Host=rabbitmq
-      - ExternalServices__RabbitMqOptions__QueueName=task-events-queue
-      - ExternalServices__RabbitMqOptions__UserName=guest
-      - ExternalServices__RabbitMqOptions__Password=guest
-    depends_on:
-      - postgres
-      - rabbitmq
+    tmsrabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: tmsrabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
 
-  http-listener:
-    image: task-http-listener
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        PROJ_PATH: src/TaskManagementService.Listener.Http.Api/TaskManagementService.Listener.Http.Api.csproj
-    container_name: task-http-listener
-    entrypoint: ["dotnet", "TaskManagementService.Listener.Http.Api.dll"]
-    ports:
-      - "5002:8080"
-    depends_on:
-      - rabbitmq
+    tmsapi:
+        # image: ghcr.io/my-repositories/taskmanagementservice-main-api:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                PROJ_PATH: src/TaskManagementService.Api/TaskManagementService.Api.csproj
+        container_name: task-main-api
+        entrypoint: ["dotnet", "TaskManagementService.Api.dll"]
+        ports:
+            - "5222:5222"
+        environment:
+            - ConnectionStrings__DefaultConnection=Host=tmspostgres;Port=5432;Database=tasks_db;Username=postgres;Password=postgres
+            - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+            - ExternalServices__HttpListenerUrl=http://tmshttplistener:5260/api/tasks/events
+            - ExternalServices__RabbitMqOptions__Host=tmsrabbitmq
+            - ExternalServices__RabbitMqOptions__QueueName=task-events-queue
+            - ExternalServices__RabbitMqOptions__UserName=guest
+            - ExternalServices__RabbitMqOptions__Password=guest
+        depends_on:
+            - tmspostgres
+            - tmsrabbitmq
 
-  rabbit-listener:
-    image: task-rabbit-listener
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        PROJ_PATH: src/TaskManagementService.Listener.Rabbit.Api/TaskManagementService.Listener.Rabbit.Api.csproj
-    container_name: task-rabbit-listener
-    entrypoint: ["dotnet", "TaskManagementService.Listener.Rabbit.Api.dll"]
-    environment:
-      - RabbitMqOptions__Host=rabbitmq
-      - RabbitMqOptions__QueueName=task-events-queue
-      - RabbitMqOptions__UserName=guest
-      - RabbitMqOptions__Password=guest
-    depends_on:
-      - rabbitmq
+    tmshttplistener:
+        # image: ghcr.io/my-repositories/taskmanagementservice-http-listener:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                PROJ_PATH: src/TaskManagementService.Listener.Http.Api/TaskManagementService.Listener.Http.Api.csproj
+        container_name: task-http-listener
+        entrypoint: ["dotnet", "TaskManagementService.Listener.Http.Api.dll"]
+        ports:
+            - "5260:5260"
+
+    tmsrabbitlistener:
+        # image: ghcr.io/my-repositories/taskmanagementservice-rabbit-listener:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                PROJ_PATH: src/TaskManagementService.Listener.Rabbit.Api/TaskManagementService.Listener.Rabbit.Api.csproj
+        container_name: tmstaskrabbitlistener
+        entrypoint: ["dotnet", "TaskManagementService.Listener.Rabbit.Api.dll"]
+        environment:
+            - RabbitMqOptions__Host=tmsrabbitmq
+            - RabbitMqOptions__QueueName=tasks-events-queue
+            - RabbitMqOptions__UserName=guest
+            - RabbitMqOptions__Password=guest
+        depends_on:
+            - tmsrabbitmq
 
 volumes:
-  pgdata:
+    pgdata:
