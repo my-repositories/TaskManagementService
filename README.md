@@ -67,3 +67,7 @@ dotnet test
 ```
 dotnet ef migrations add Initial --project "src/TaskManagementService.Dal/TaskManagementService.Dal.csproj" --startup-project "src/TaskManagementService.Api/TaskManagementService.Api.csproj" -o "Migrations"
 ```
+
+## Demo
+
+<video src="https://github.com/user-attachments/assets/18485254-b01b-4560-b52e-fe5d95f536d2" width="600" controls></video>
