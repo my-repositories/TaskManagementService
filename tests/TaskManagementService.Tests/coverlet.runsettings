@@ -7,19 +7,19 @@
           <Format>cobertura</Format>
           <ExcludeByAttribute>GeneratedCodeAttribute,CompilerGeneratedAttribute</ExcludeByAttribute>
           <Exclude>
-            [*]*OpenApi*
-            [*]*Generated*
-            [*]*CompilerGenerated*
-            [*]Program
-            [TaskManagementService.Tests]*
-            [*]*Migrations*
+            <Filter>[*]*OpenApi*</Filter>
+            <Filter>[*]*Generated*</Filter>
+            <Filter>[*]*CompilerGenerated*</Filter>
+            <Filter>[*]Program</Filter>
+            <Filter>[TaskManagementService.Tests]*</Filter>
+            <Filter>[*]*Migrations*</Filter>
           </Exclude>
           <Include>
-            [TaskManagementService.Api]*
-            [TaskManagementService.Dal]*
-            [TaskManagementService.Domain]*
-            [TaskManagementService.Listener.Http.Api]*
-            [TaskManagementService.Listener.Rabbit.Api]*
+            <Filter>[TaskManagementService.Api]*</Filter>
+            <Filter>[TaskManagementService.Dal]*</Filter>
+            <Filter>[TaskManagementService.Domain]*</Filter>
+            <Filter>[TaskManagementService.Listener.Http.Api]*</Filter>
+            <Filter>[TaskManagementService.Listener.Rabbit.Api]*</Filter>
           </Include>
         </Configuration>
       </DataCollector>
