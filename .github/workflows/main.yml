@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Tests & Collect Coverage
         run: |
-          dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage" --settings tests/TaskManagementService.Tests/coverlet.runsettings
+          dotnet test --configuration Release --no-build --collect:"XPlat Code Coverage" --settings tests/TaskManagementService.Tests/coverlet.runsettings /p:ExcludeByFile="**/Migrations/*.cs"
 
       - name: Install ReportGenerator Tool
         run: |
