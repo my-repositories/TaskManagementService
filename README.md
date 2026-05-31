@@ -26,6 +26,11 @@ set -U fish_user_paths ~/.dotnet/tools $fish_user_paths
 sudo docker compose up -d --build
 ```
 
+## tmux
+```bash
+./scripts/tms.sh start
+```
+
 ### Порты:
 * API + Swagger:    http://localhost:5222/swagger
 * HTTP Listener:    http://localhost:5260
