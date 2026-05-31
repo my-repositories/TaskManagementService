@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /app
 ARG PROJ_PATH
 
-COPY *.sln .
+#COPY *.sln .
 COPY src/TaskManagementService.Domain/*.csproj ./src/TaskManagementService.Domain/
 COPY src/TaskManagementService.Dal/*.csproj ./src/TaskManagementService.Dal/
 COPY src/TaskManagementService.Api/*.csproj ./src/TaskManagementService.Api/

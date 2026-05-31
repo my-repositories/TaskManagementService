@@ -9,7 +9,7 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - pgdata:/var/lib/postgresql/data
+            - ./pg_data:/var/lib/postgresql/data
         healthcheck:
             test: ["CMD-SHELL", "pg_isready -U postgres -d tasks_db"]
             interval: 3s
@@ -43,6 +43,11 @@ services:
         environment:
             RABBITMQ_DEFAULT_USER: guest
             RABBITMQ_DEFAULT_PASS: guest
+        healthcheck:
+            test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
 
     tmsapi:
         # image: ghcr.io/my-repositories/taskmanagementservice-main-api:latest
@@ -51,21 +56,27 @@ services:
             dockerfile: Dockerfile
             args:
                 PROJ_PATH: src/TaskManagementService.Api/TaskManagementService.Api.csproj
-        container_name: task-main-api
+        container_name: tmsapi
         entrypoint: ["dotnet", "TaskManagementService.Api.dll"]
         ports:
             - "5222:5222"
         environment:
+            # or Production
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:5222
             - ConnectionStrings__DefaultConnection=Host=tmspostgres;Port=5432;Database=tasks_db;Username=postgres;Password=postgres
             - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
             - ExternalServices__HttpListenerUrl=http://tmshttplistener:5260/api/tasks/events
-            - ExternalServices__RabbitMqOptions__Host=tmsrabbitmq
-            - ExternalServices__RabbitMqOptions__QueueName=task-events-queue
-            - ExternalServices__RabbitMqOptions__UserName=guest
-            - ExternalServices__RabbitMqOptions__Password=guest
+            - RabbitMqOptions__Host=tmsrabbitmq
+            - RabbitMqOptions__QueueName=tasks-events-queue
+            - RabbitMqOptions__UserName=guest
+            - RabbitMqOptions__Password=guest
         depends_on:
-            - tmspostgres
-            - tmsrabbitmq
+            tmspostgres:
+                condition: service_healthy
+            tmsrabbitmq:
+                condition: service_healthy
+
 
     tmshttplistener:
         # image: ghcr.io/my-repositories/taskmanagementservice-http-listener:latest
@@ -74,10 +85,14 @@ services:
             dockerfile: Dockerfile
             args:
                 PROJ_PATH: src/TaskManagementService.Listener.Http.Api/TaskManagementService.Listener.Http.Api.csproj
-        container_name: task-http-listener
+        container_name: tmshttplistener
         entrypoint: ["dotnet", "TaskManagementService.Listener.Http.Api.dll"]
         ports:
             - "5260:5260"
+        environment:
+            # or Production
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:5260
 
     tmsrabbitlistener:
         # image: ghcr.io/my-repositories/taskmanagementservice-rabbit-listener:latest
@@ -94,7 +109,8 @@ services:
             - RabbitMqOptions__UserName=guest
             - RabbitMqOptions__Password=guest
         depends_on:
-            - tmsrabbitmq
+            tmsrabbitmq:
+                condition: service_healthy
 
 volumes:
-    pgdata:
+    postgres:

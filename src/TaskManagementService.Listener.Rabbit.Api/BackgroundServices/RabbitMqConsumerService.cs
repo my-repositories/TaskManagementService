@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.Client.Exceptions;
 using System.Text;
 using System.Text.Json;
 using TaskManagementService.Domain.Configurations;
@@ -52,8 +53,35 @@ public class RabbitMqConsumerService : BackgroundService
             Password = _rabbitConfig.Password
         };
 
-        _connection = await factory.CreateConnectionAsync(stoppingToken);
-        _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
+        int retryCount = 0;
+        int maxRetries = 10;
+
+        while (_connection == null && !stoppingToken.IsCancellationRequested)
+        {
+            try
+            {
+                _logger.LogInformation("[RabbitMqConsumerService] Попытка подключения к RabbitMQ ({Attempt}/{Max})...", retryCount + 1, maxRetries);
+                
+                _connection = await factory.CreateConnectionAsync(stoppingToken);
+                _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
+                
+                _logger.LogInformation("[RabbitMqConsumerService] Успешно подключено к RabbitMQ и создан канал.");
+            }
+            catch (BrokerUnreachableException ex)
+            {
+                retryCount++;
+                if (retryCount >= maxRetries)
+                {
+                    _logger.LogCritical(ex, "[RabbitMqConsumerService] Брокер недоступен после {Max} попыток. Падаем.", maxRetries);
+                    throw;
+                }
+
+                _logger.LogWarning("[RabbitMqConsumerService] Порт RabbitMQ еще закрыт. Ожидание 3 секунды...");
+                await Task.Delay(3000, stoppingToken);
+            }
+        }
+
+        if (_channel == null) return;
 
         await _channel.QueueDeclareAsync(
             queue: _rabbitConfig.QueueName,
@@ -98,7 +126,10 @@ public class RabbitMqConsumerService : BackgroundService
             }
             finally
             {
-                await _channel.BasicAckAsync(ea.DeliveryTag, false, stoppingToken);
+                if (_channel is { IsOpen: true })
+                {
+                    await _channel.BasicAckAsync(ea.DeliveryTag, false, stoppingToken);
+                }
             }
         };
 
@@ -107,6 +138,8 @@ public class RabbitMqConsumerService : BackgroundService
             autoAck: false,
             consumer: consumer,
             cancellationToken: stoppingToken);
+            
+        await Task.Delay(Timeout.Infinite, stoppingToken);
     }
 
     /// <summary>
