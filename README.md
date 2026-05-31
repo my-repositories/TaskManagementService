@@ -4,7 +4,13 @@
 [![Coverage](https://raw.githubusercontent.com/my-repositories/TaskManagementService/refs/heads/badges/demo_coverage.svg)](https://my-repositories.github.io/TaskManagementService)
 
 
-# Task Management Service
+## Установка зависимостей
+
+```
+sudo pacman -Syu dotnet-sdk aspnet-runtime aspnet-targeting-pack dotnet-runtime dotnet-targeting-pack
+dotnet tool install --global dotnet-ef
+set -U fish_user_paths ~/.dotnet/tools $fish_user_paths
+```
 
 ## Проекты
 * `src/TaskManagementService.Api` — Основное CRUD API. Содержит фоновый воркер OutboxProcessorBackgroundService.
@@ -17,29 +23,25 @@
 
 ## Запуск через Docker (Все сервисы + БД + Брокер)
 ```bash
-docker compose up -d --build
+sudo docker compose up -d --build
 ```
 
 ### Порты:
-* API + Swagger: `http://localhost:5222/swagger`
-* HTTP Listener: `http://localhost:5260`
-* RabbitMQ UI: `http://localhost:15672` (guest/guest)
+* API + Swagger:    http://localhost:5222/swagger
+* HTTP Listener:    http://localhost:5260
+* RabbitMQ UI:      http://localhost:15672 (guest / guest)
+* PgAdmin4:         http://localhost:5050/browser/ (postgres@postgres.com / postgres / postgres)
 
 ---
 
 ## Локальный запуск (Разработка)
 
-### 1. Поднять БД и Брокер
+### Поднять БД и Брокер
 ```bash
-docker compose up -d postgres rabbitmq
+sudo docker compose up -d tmspostgres tmsdbpga tmsrabbitmq 
 ```
 
-### 2. Накатить миграции
-```bash
-dotnet ef database update -p src/TaskManagementService.Dal -s src/TaskManagementService.Api
-```
-
-### 3. Запустить сервисы
+### Запустить сервисы
 ```bash
 dotnet run --project src/TaskManagementService.Api
 dotnet run --project src/TaskManagementService.Listener.Http.Api
@@ -51,4 +53,12 @@ dotnet run --project src/TaskManagementService.Listener.Rabbit.Api
 ## Тесты
 ```bash
 dotnet test
+```
+
+---
+
+## Добавление EF-миграций
+
+```
+dotnet ef migrations add Initial --project "src/TaskManagementService.Dal/TaskManagementService.Dal.csproj" --startup-project "src/TaskManagementService.Api/TaskManagementService.Api.csproj" -o "Migrations"
 ```

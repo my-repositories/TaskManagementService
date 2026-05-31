@@ -3,6 +3,7 @@ using Npgsql;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using TaskManagementService.Api.BackgroundServices;
+using TaskManagementService.Api.Extensions;
 using TaskManagementService.Api.Services;
 using TaskManagementService.Dal;
 using TaskManagementService.Dal.Repositories;
@@ -50,5 +51,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.ApplyMigrationsAsync();
 
 app.Run();
