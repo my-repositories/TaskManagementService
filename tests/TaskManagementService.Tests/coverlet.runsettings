@@ -12,6 +12,7 @@
             [*]*CompilerGenerated*,
             [*]Program,
             [TaskManagementService.Tests]*
+            [*]*Migrations*
           </Exclude>
           <Include>
             [TaskManagementService.Api]*
