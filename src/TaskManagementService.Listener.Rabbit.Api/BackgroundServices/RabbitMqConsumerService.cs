@@ -61,10 +61,10 @@ public class RabbitMqConsumerService : BackgroundService
             try
             {
                 _logger.LogInformation("[RabbitMqConsumerService] Попытка подключения к RabbitMQ ({Attempt}/{Max})...", retryCount + 1, maxRetries);
-                
+
                 _connection = await factory.CreateConnectionAsync(stoppingToken);
                 _channel = await _connection.CreateChannelAsync(cancellationToken: stoppingToken);
-                
+
                 _logger.LogInformation("[RabbitMqConsumerService] Успешно подключено к RabbitMQ и создан канал.");
             }
             catch (BrokerUnreachableException ex)
@@ -138,7 +138,7 @@ public class RabbitMqConsumerService : BackgroundService
             autoAck: false,
             consumer: consumer,
             cancellationToken: stoppingToken);
-            
+
         await Task.Delay(Timeout.Infinite, stoppingToken);
     }
 
