@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "TMS",
+            "Group": "Servers",
+            "Host": "tmspostgres",
+            "Port": 5432,
+            "MaintenanceDB": "tasks_db",
+            "Username": "postgres",
+            "SSLMode": "prefer",
+            "PassFile": "/tmp/pgpass"
+        }
+    }
+}
