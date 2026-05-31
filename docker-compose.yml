@@ -101,7 +101,7 @@ services:
             dockerfile: Dockerfile
             args:
                 PROJ_PATH: src/TaskManagementService.Listener.Rabbit.Api/TaskManagementService.Listener.Rabbit.Api.csproj
-        container_name: tmstaskrabbitlistener
+        container_name: tmsrabbitlistener
         entrypoint: ["dotnet", "TaskManagementService.Listener.Rabbit.Api.dll"]
         environment:
             - RabbitMqOptions__Host=tmsrabbitmq
@@ -114,3 +114,7 @@ services:
 
 volumes:
     postgres:
+
+networks:
+  default:
+    name: taskmanagementservice_default
